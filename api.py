@@ -29,13 +29,13 @@ try:
     auth = tweepy.OAuthHandler(os.getenv('twitter_consumer_key'), os.getenv('twitter_consumer_secret'))
     auth.set_access_token(os.getenv('twitter_access_token'), os.getenv('twitter_access_token_secret'))
     tweep = tweepy.API(auth)
-except tweepy.TweepError as e:
+except TweepyException as e:
     print(f"Could not log in to Twitter API! {e.reason}")
     exit(1)
 
 @app.route('/', methods=['GET'])
 def home():
-    return "Invalid method"
+    return "I'm a teapot", 418
 
 @app.route('/v1/get_url', methods=['POST'])
 def get():
